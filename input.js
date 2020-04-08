@@ -28,9 +28,12 @@ const handleUserInput = (data) => {
         } else if (data === 's') {
           console.log('down');
           connection.write("Move: down");
-        } else { // data === d
+        } else if (data === 'd') {
           console.log('right');
           connection.write("Move: right");
+        } else { //any other key sends a message
+          console.log(`Received: ${data}`);
+          connection.write("Say: XYZ");
         }
     }
 }
