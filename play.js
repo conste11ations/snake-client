@@ -1,23 +1,12 @@
-const net = require('net');
+// play.js
+const { connect } = require('./client');
+const { setupInput } = require('./input');
 
 /**
- * Establishes connection with the game server
+ * Setup User Interface 
+ * Specifically, so that we can handle user input via stdin
  */
-const connect = function() {
-  const conn = net.createConnection({ 
-    host: '135.23.222.148',
-    port: 50541
-  });
-  // interpret incoming data as text
-  conn.on('data', (data) => {
-    console.log("Server Wrote:");
-    console.log(data);
-  })
-
-  conn.setEncoding('utf8'); 
-
-  return conn;
-}
 
 console.log('Connecting ...');
-connect();
+const connResult = connect();
+setupInput(connResult);
